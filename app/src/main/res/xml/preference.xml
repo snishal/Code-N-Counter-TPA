@@ -39,7 +39,7 @@
             android:title="Source Code">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://github.com/the-dagger/Pokedex" />
+                android:data="https://github.com/snishal/Code-N-Counter-TPA/" />
         </Preference>
 
     </PreferenceCategory>

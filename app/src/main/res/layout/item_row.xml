@@ -38,32 +38,31 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <!--Thumbs Up and Down Button
-        <ImageView-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:background="?selectableItemBackgroundBorderless"-->
-            <!--android:id="@+id/btnYes"-->
-            <!--android:clickable="true"-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="64dp"-->
-            <!--android:layout_toStartOf="@id/btnNo"-->
-            <!--android:contentDescription="@string/yes"-->
-            <!--android:padding="16dp"-->
-            <!--app:srcCompat="@drawable/ic_thumb_up"-->
-            <!--android:focusable="true" />-->
+        <ImageView
+            android:layout_centerVertical="true"
+            android:background="?selectableItemBackgroundBorderless"
+            android:id="@+id/btnYes"
+            android:clickable="true"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_toStartOf="@id/btnNo"
+            android:contentDescription="@string/yes"
+            android:padding="16dp"
+            app:srcCompat="@drawable/ic_thumb_up"
+            android:focusable="true" />
 
-        <!--<ImageView-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:clickable="true"-->
-            <!--android:background="?selectableItemBackgroundBorderless"-->
-            <!--android:id="@+id/btnNo"-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="64dp"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:contentDescription="@string/no"-->
-            <!--android:padding="16dp"-->
-            <!--app:srcCompat="@drawable/ic_thumb_down"-->
-            <!--android:focusable="true" />-->
+        <ImageView
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:background="?selectableItemBackgroundBorderless"
+            android:id="@+id/btnNo"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/no"
+            android:padding="16dp"
+            app:srcCompat="@drawable/ic_thumb_down"
+            android:focusable="true" />
 
 
     </RelativeLayout>

@@ -1,20 +1,32 @@
-# Pokedex
-Android app that identifies and detects Pokemon in the provided Image using Tensorflow and Firebase MLKit.
+# TPA : The Plant App
 
-[![](https://cdn.rawgit.com/steverichey/google-play-badge-svg/master/img/en_get.svg)](https://play.google.com/store/apps/details?id=app.harshit.pokedex)
+## Inspiration
+We recently went to a village, and to our surprise, we didn't know the names of any crops. We could not identify them. So we came to a realization that the youth is forgetting our farming culture. We decided to do something about it.
 
-# Setup Instructions
+## What it does
+The user simply points the camera to the crop and the app identifies it and provides the user with a description and details. Farmers can also point the app to crops and identify whether the crop is disease infected. That'll help them to find suitable measures to prevent further damage.
 
-1. Clone the project
-2. Add it to your Firebase Console
-3. Profit!
+## How we built it
+We began with dataset collection. Then we trained a model to identify different crops & the infected crops. We then converted the model to tensor flow lite to use it in our Android app. and Finally we built the app with this offline tflite model.
 
-# Dataset used to train the model
+## Challenges we ran into
+- Finding the dataset. we scraped a lot of websites for images and datasets. This was the hardest part.
+- Training the model. Finding out the optimal iterations and parameters took some time.
+- Kotlin. None of us knew kotlin. So it took us some time to get started with the app.
 
-[https://www.kaggle.com/thedagger/pokemon-generation-one](https://www.kaggle.com/thedagger/pokemon-generation-one)
+## Accomplishments that we're proud of
+Successfully built a working demo for the flower database.
 
-# Screenshots 
-![](https://i.imgur.com/dgOZaW1.jpg) 
-![](https://i.imgur.com/T1ytvCa.jpg)
+## What we learned
+- How to train a custom tensor flow lite model.
+- Working with kotlin.
+- Scraping datasets and images.
 
-Built with ❤️ by [@the-dagger](https://github.com/the-dagger)
+## What's next for TPA : The Plant App
+Crop health Prediction based on current state of crops.
+Integrated Google Maps to directly upload field pictures and serve as a local guide.
+
+## Ref 
+
+- [Tensorflow lite tutorial](https://heartbeat.fritz.ai/building-pok%C3%A9dex-in-android-using-tensorflow-lite-and-firebase-cc780848395)
+

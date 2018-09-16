@@ -20,8 +20,8 @@ import android.view.MenuItem
 import android.view.View
 import app.ducs.tpa.HandleFileUpload
 import app.ducs.tpa.R
-import app.ducs.tpa.adapter.PokemonAdapter
-import app.ducs.tpa.model.Pokemon
+import app.ducs.tpa.adapter.CropAdapter
+import app.ducs.tpa.model.Crop
 import com.getkeepsafe.taptargetview.TapTarget
 import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.firebase.auth.FirebaseAuth
@@ -41,9 +41,8 @@ import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 //List of all the pokemon
-    var pokeArray: Array<String>? = null
-    val pokemonLabel = "./../../../../../assets/labels.txt"
-//val pokeArray: Array<String> = arrayOf("Abra", "Aerodactyl", "Alakazam", "Arbok", "Arcanine", "Articuno", "Beedrill", "Bellsprout",
+    var cropArray: Array<String>? = null
+//val cropArray: Array<String> = arrayOf("Abra", "Aerodactyl", "Alakazam", "Arbok", "Arcanine", "Articuno", "Beedrill", "Bellsprout",
 //        "Blastoise", "Bulbasaur", "Butterfree", "Caterpie", "Chansey", "Charizard", "Charmander", "Charmeleon", "Clefable", "Clefairy", "Cloyster", "Cubone", "Dewgong",
 //        "Diglett", "Ditto", "Dodrio", "Doduo", "Dragonair", "Dragonite", "Dratini", "Drowzee", "Dugtrio", "Eevee", "Ekans", "Electabuzz",
 //        "Electrode", "Exeggcute", "Exeggutor", "Farfetchd", "Fearow", "Flareon", "Gastly", "Gengar", "Geodude", "Gloom",
@@ -77,19 +76,19 @@ class MainActivity : BaseCameraActivity(), HandleFileUpload {
     }
     private val rootRef = FirebaseStorage.getInstance().reference.child("pokemon")
     private lateinit var currentBitmap: Bitmap
-    private val pokemonList = mutableListOf<Pokemon>()
+    private val pokemonList = mutableListOf<Crop>()
     private val intValues = IntArray(DIM_IMG_SIZE_X * DIM_IMG_SIZE_Y)
     private var imgData: ByteBuffer = ByteBuffer.allocateDirect(
             4 * DIM_BATCH_SIZE * DIM_IMG_SIZE_X * DIM_IMG_SIZE_Y * DIM_PIXEL_SIZE)
     private lateinit var fireBaseInterpreter: FirebaseModelInterpreter
     private lateinit var inputOutputOptions: FirebaseModelInputOutputOptions
-    private lateinit var itemAdapter: PokemonAdapter
+    private lateinit var itemAdapter: CropAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
 
-        pokeArray = application.assets.open("labels.txt").bufferedReader().use{
+        cropArray = application.assets.open("labels.txt").bufferedReader().use{
             it.readText()
         }.split('\n').toTypedArray()
 
@@ -103,7 +102,7 @@ class MainActivity : BaseCameraActivity(), HandleFileUpload {
         }
 
         rvLabel.layoutManager = LinearLayoutManager(this)
-        itemAdapter = PokemonAdapter(pokemonList, this)
+        itemAdapter = CropAdapter(pokemonList, this)
         rvLabel.adapter = itemAdapter
 //        Load a cloud model using the FirebaseCloudModelSource Builder class
         val cloudSource = FirebaseCloudModelSource.Builder("pokedex")
@@ -243,16 +242,16 @@ class MainActivity : BaseCameraActivity(), HandleFileUpload {
                 .build()
         fireBaseInterpreter.run(inputs, inputOutputOptions)
                 ?.addOnSuccessListener {
-                    val pokeList = mutableListOf<Pokemon>()
+                    val pokeList = mutableListOf<Crop>()
                     /**
                      * Run a foreach loop through the output float array containing the probabilities
                      * corresponding to each label
-                     * @see pokeArray to know what labels are supported
+                     * @see cropArray to know what labels are supported
                      */
                     it.getOutput<Array<FloatArray>>(0)[0].forEachIndexed { index, fl ->
                         //Only consider a pokemon when the accuracy is more than 20%
                         if (fl > .20)
-                            pokeList.add(Pokemon(pokeArray!![index], fl)) //Sahil
+                            pokeList.add(Crop(cropArray!![index], fl)) //Sahil
                     }
                     itemAdapter.setList(pokeList)
                     sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
